@@ -441,6 +441,13 @@ $(function () {
 		
 		// Call source code plugin
 		if(!this.prettyPrint) {
+			// Convert content of .prettyprint back to text
+			
+			var sources = $('.prettyprint');
+			$.each(sources, function(k, v){
+			    $(this).text($(this).html());
+			});
+			
 			prettyPrint();
 			this.prettyPrint = true;
 		}
