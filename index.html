@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<title>DocFix template</title>
+		
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="css/docfix.css" type="text/css">
+		<link rel="stylesheet" href="css/prettify.css" type="text/css">
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/docfix.js"></script>
+		<script type="text/javascript" src="js/prettify.js"></script>
+		
+		<script type="text/javascript">
+		    docfix.settings = {
+			    nav: 'doc-nav',
+			    navScrollSpy: 'doc-scrollspy',
+			    navTags: 'doc-navtags',
+			    content: 'doc-content',
+			    summary: 'doc-summary',
+			    toc: 'doc-toc',
+			    topId: 'doc-top',
+			    topText: 'Top',
+			    basePath: '/',
+			    files: ['contentFileA.html', 'contentFileB.html', 'contentFileC.html']
+		    };
+		</script>
+	</head>
+	
+	<body data-spy="scroll" data-target=".doc-navtags" data-offset="110">
+	
+	    <div class="container">
+	    	
+	    	<div class="row">
+	    	
+		    <div class="span3 doc-navtags">
+			<!-- left navigation bar (navTags) -->
+			<div id="doc-scrollspy" class="doc-navtag-container">
+				<ul id="doc-navtags" class="nav nav-list affix navtag">
+				    <!--  navtags will be added here -->
+				</ul>
+			</div>
+		    </div>
+		    
+		    <div class="span8">
+			<div class="mainbox">			
+			    
+			    <!-- Maybe this is a good place for adding a nice image/logo -->
+			    <div class="navbar">
+				<div class="navbar-inner">
+				    <ul class="nav">
+					<li class="active">
+						<a href=".">Table of Contents</a>
+					</li>
+
+					<li class="dropdown">
+					    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+						    Chapters <b class="caret"></b>
+					    </a>
+					    <ul class="dropdown-menu" id="doc-nav">
+						<!-- Main headers will be added here -->
+					    </ul>
+					</li>
+				    </ul>
+				</div>
+			    </div>
+
+			    <div id="doc-toc">
+				<h1>Your documentation title</h1>
+
+				<h2>Table of Contents</h2>					
+			    </div>
+
+			    <div id="doc-top"></div>
+
+			    <div>
+				Chapter Summary
+				<div id="doc-summary"></div>
+			    </div>
+
+
+			    <div id="doc-content"></div>
+			</div>
+
+			<span class="copyright">&copy; Your Name, Year</span>
+		    </div>
+		</div>
+	    </div>
+	</body>
+</html>
