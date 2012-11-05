@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 	<head>
-		<title>DocFix template</title>
+		<title>Your documentation title</title>
 		
 		<meta charset="utf-8">
 		<meta name="description" content="">
@@ -16,33 +16,34 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/docfix.js"></script>
 		<script type="text/javascript" src="js/prettify.js"></script>
+		<script type="text/javascript" src="js/lang-css.js"></script>
 		
 		<script type="text/javascript">
 		    docfix.settings = {
-			    nav: 'doc-nav',
-			    navScrollSpy: 'doc-scrollspy',
-			    navTags: 'doc-navtags',
-			    content: 'doc-content',
-			    summary: 'doc-summary',
-			    toc: 'doc-toc',
-			    topId: 'doc-top',
+			    nav: 'docfix-nav',
+			    navScrollSpy: 'docfix-scrollspy',
+			    navTags: 'docfix-navtags',
+			    content: 'docfix-content',
+			    summary: 'docfix-summary',
+			    toc: 'docfix-toc',
+			    topId: 'docfix-top',
 			    topText: 'Top',
 			    basePath: '/',
-			    files: ['contentFileA.html', 'contentFileB.html', 'contentFileC.html']
+			    files: ['contentfileA.html', 'contentfileB.html', 'contentfileC.html', 'contentFileD.html']
 		    };
 		</script>
 	</head>
 	
-	<body data-spy="scroll" data-target=".doc-navtags" data-offset="110">
+	<body data-spy="scroll" data-target=".docfix-navtags" data-offset="110">
 	
 	    <div class="container">
 	    	
 	    	<div class="row">
 	    	
-		    <div class="span3 doc-navtags">
+		    <div class="span3 docfix-navtags">
 			<!-- left navigation bar (navTags) -->
-			<div id="doc-scrollspy" class="doc-navtag-container">
-				<ul id="doc-navtags" class="nav nav-list affix navtag">
+			<div id="docfix-scrollspy" class="docfix-navtag-container">
+				<ul id="docfix-navtags" class="nav nav-list affix docfix-navtags">
 				    <!--  navtags will be added here -->
 				</ul>
 			</div>
@@ -63,7 +64,7 @@
 					    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
 						    Chapters <b class="caret"></b>
 					    </a>
-					    <ul class="dropdown-menu" id="doc-nav">
+					    <ul class="dropdown-menu" id="docfix-nav">
 						<!-- Main headers will be added here -->
 					    </ul>
 					</li>
@@ -71,21 +72,21 @@
 				</div>
 			    </div>
 
-			    <div id="doc-toc">
+			    <div id="docfix-toc">
 				<h1>Your documentation title</h1>
 
 				<h2>Table of Contents</h2>					
 			    </div>
 
-			    <div id="doc-top"></div>
+			    <div id="docfix-top"></div>
 
 			    <div>
 				Chapter Summary
-				<div id="doc-summary"></div>
+				<div id="docfix-summary"></div>
 			    </div>
 
 
-			    <div id="doc-content"></div>
+			    <div id="docfix-content"></div>
 			</div>
 
 			<span class="copyright">&copy; Your Name, Year</span>

@@ -1,11 +1,55 @@
 <h2>Cross-Referencing</h2>
 
-<h3>Setting up cross references and their destinations</h3>
+<h3>What is Cross-Referencing ?</h3>
 
-Link to a cross-document reference <a href="#" onclick="doc.search('chapter2_code');">Link</a>
-Destination markup: <a id="chapter2_code" class="doc-navtag">sourcetag</a>
+
+<h3>Setting up a cross reference</h3>
+<p>
+	Setting up a cross reference is quite easy. It is nearly the same as 
+	defining a link in HTML syntax. Set the href attribute to "#" and add a onclick event.
+</p>
+
+<p>
+	The following example will set up an cross-reference to a destination called dest.
+</p>
+<pre class="prettyprint linenums lang-html">
+	<a href="#" onclick="docfix.search('dest');"> Link caption </a>
+</pre>
+
+
+<h3>Setting up a cross reference destination</h3>
+
+<p>
+	First of all, a destination can be every html tag used in your documentation.
+	The only thing that matters is the value of the id attribute. 
+</p>
+<p>
+	Please read "How cross-referencing works" to make sure your
+	destination is really found in the document.
+</p>
+<pre class="prettyprint linenums lang-html">
+	<a id="destinationA">sourcetag</a> 
+	<span id="destinationB">...</span>
+</pre>
+
+<blockquote>
+	You may use the css class <span class="label">docfix-hidden</span> to 
+	hide your destination to the viewer.
+	If someone searches for your destination or just clicks on a cross-reference 
+	the document will still be scrolled to the location of your destination.
+</blockquote>
+<div class="alert alert-warning">
+	Do not use the css class <span class="label">hidden</span> 
+	for hiding your destination tags, because this will crash the scrolling.
+</div>
+
+<h3>How cross-referencing works</h3>
+Link to a cross-document reference 
+Destination markup: 
 
 <h3>Setting up nav tags</h3>
 
-<a id="chapter1-2nd" class="doc-navtag">Navtag</a>
+<a id="chapter1-2nd" class="docfix-navtag">Navtag</a>
+<a id="chapter1-3nd" class="docfix-navtag">Navtag</a>
+<a id="chapter1-4nd" class="docfix-navtag">Navtag</a>
 

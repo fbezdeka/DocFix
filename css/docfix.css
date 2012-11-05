@@ -38,10 +38,18 @@ div.mainbox {
 	text-align: justify;
 }
 
-.doc-navtag {
+.docfix-navtag {
 	visibility: hidden;
 	display: block;
 	height: 0px;
+	width: 0px;
+}
+
+.docfix-hidden {
+    visibility: hidden;
+	display: block;
+	height: 0px;
+	width: 0px;
 }
 
 div.navbar-inner {
@@ -50,32 +58,26 @@ div.navbar-inner {
 	margin-bottom: 15px;
 }
 
-.navtag .icon-chevron-right {
+ul.docfix-navtags .icon-chevron-right {
     float: right;
     margin-top: 2px;
     margin-right: -6px;
     opacity: 0.25;
 }
 
-.navtag > li > a {
+ul.docfix-navtags > li > a {
     margin: 0px 0px -1px;
     padding: 8px 14px;
     border: 1px solid rgb(229, 229, 229);
     display: block;
 }
 
-.navtag > li:first-child > a {
+ul.docfix-navtags > li:first-child > a {
     border-radius: 6px 6px 0px 0px;
 }
 
-
-.navtag > li:last-child > a {
+ul.docfix-navtags > li:last-child > a {
     border-radius: 0px 0px 6px 6px;
-}
-
-
-img.logo {
-	margin-bottom: 15px;
 }
 
 a, a:visited {
@@ -92,6 +94,10 @@ div.hr {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border-bottom: 2px solid rgb(238, 238, 238);
+}
+
+.alert {
+	margin-top: 15px;
 }
 
 h1, h2, h3, h4 {
@@ -141,16 +147,16 @@ code.prettyprint {
 	font-size: 13px;
 	text-align: left;
 }
-div#doc-content  img {
+div#docfix-content  img {
 	display: block;
 }
 
-div#doc-content  img.right {
+div#docfix-content  img.right {
 	float: right;
 	margin-left: 5px;
 }
 
-div#doc-content  img.left {
+div#docfix-content  img.left {
 	float: left;
 	margin-right: 5px;
 }
@@ -188,20 +194,19 @@ span.copyright {
 	font-size: 13px;
 }
 
-
-ul.navtag {
+ul.docfix-navtags {
 	top: 180px;
 	width: 230px;
 	margin: 30px 0px 0px;
 	padding: 0px;
 	background-color: rgb(255, 255, 255);
 	border-radius: 6px 6px 6px 6px;
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.067);
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
 }
 
 
 @media(max-width: 980px) {
-	ul.navtag {
+	ul.docfix-navtags {
 	    top: 0px;
 	    margin-top: 30px;
 	    margin-right: 0px;
@@ -211,7 +216,7 @@ ul.navtag {
 
 @media(max-width: 767px) {
 	
-	ul.navtag {
+	ul.docfix-navtags {
 	    width: auto;
 	    margin-bottom: 20px;
 	    
