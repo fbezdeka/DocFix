@@ -532,6 +532,10 @@ $(function () {
 			var caption = "";
 			var layer = 0;
 			
+			if($v.is("pre")) {
+				return;
+			}
+			
 			if($v.children().length > 0) {
 				// Continue recursion
 				$.each($v.children(), function(k, v) {
