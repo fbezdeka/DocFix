@@ -1,8 +1,34 @@
 <h2>Getting started</h2>
 
-<h3>What DocFix is able to do...</h3>
+<h3>What is DocFix ?</h3>
 
 <h3>Components of DocFix</h3>
 
-<h3>How to get it running</h3>
+<h3>Configuration</h3>
+
+<p>
+	To get DocFix running there is some minimal configuration required. 
+</p>
+
+<p>
+	The following javascript must be added to the DocFix template file. 
+	See below for detailed parameter meanings and possible values.
+</p>
+
+<pre class="prettyprint linenums lang-javascript">
+docfix.settings = {
+	nav: 'docfix-nav',
+	navScrollSpy: 'docfix-scrollspy',
+	navTags: 'docfix-navtags',
+	content: 'docfix-content',
+	summary: 'docfix-summary',
+	toc: 'docfix-toc',
+	topId: 'docfix-top',
+	topText: 'Top',
+	basePath: '/doc/',
+	files: ['contentA.html', 'contentB.html', 'contentc.html']
+};
+</pre>
+
+<a id="config-setup" class="docfix-navtag">Configuration parameters</a>
 
