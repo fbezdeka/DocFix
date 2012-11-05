@@ -454,7 +454,7 @@ $(function () {
 			var sources = $('.prettyprint');
 			
 			$.each(sources, function(){
-				$(this).text($(this).html().replace(/^(\t*)( *)/g, "").replace(/\n(\t*)( *)/g, "\n"));
+				$(this).text($(this).html());
 			});
 			
 			prettyPrint();
