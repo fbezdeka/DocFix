@@ -577,6 +577,15 @@ $(function () {
 				
 				that.navTags.push(new docfix.NavTag($v.text(), $v.attr('id')));
 			}
+			
+			if($v.is("a")) {
+				
+				// Setup click event for hyperlinks
+				$v.on('click', function(e) {
+					e.preventDefault();
+					docfix.search($v.attr('href'));
+				});
+			}
 				
 			if(isHeading) {
 				var headerID = that.addHeader(caption, text, layer);
