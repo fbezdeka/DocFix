@@ -53,65 +53,73 @@ $(function () {
 	 */
 	docfix.run = function(start) {
 		
-		if(!docfix.initialized) {
+		if(docfix.initialized === false) {
 			docfix.createFileArray();
-		}
 			
-		if(start) {
-			docfix.generateTableOfContents(start);
-		} else {
-			docfix.generateTableOfContents(0);
+			if(start) {
+				docfix.generateTableOfContents(start);
+			} else {
+				docfix.generateTableOfContents(0);
+			}
+
+			// Create the nav bar and TOC
+			var $toc = $('<ul class="summary"></ul>');
+
+			for(var file = 0; file < docfix.contentArray.length; file++) {
+
+				var currentFile = docfix.contentArray[file];
+
+				for(var header = 0; header < currentFile.headerList.length; header++) {
+
+					var currentHeader = docfix.contentArray[file].headerList[header];
+
+					if(currentHeader.getLayer() === 1) {
+						// We found a heading of layer 1
+						// Add it to the nav bar
+						var nav = $('<li><a class="header-menu">' + currentHeader.getText() + '</a></li>');
+
+						nav.on('click', {file: docfix.contentArray[file], headerID: currentHeader.getHeaderID()}, function(e) {
+							e.data.file.search('header-' + e.data.headerID);
+							$(this).parent().children().removeClass("active");
+							$('#' + docfix.settings.nav).parent().parent().children().removeClass("active");
+							$(this).addClass("active");
+						});
+
+						nav.css('cursor', 'pointer');
+
+						$('#' + docfix.settings.nav).append(nav);
+					}
+
+					var $h = docfix.createLi(currentHeader.getCaption(), currentHeader.getText(), currentHeader.getLayer(), currentHeader.getHeaderID());
+					$toc.append($h);
+				}
+
+			}
+
+			// Write content of toc
+			$('#' + docfix.settings.toc).append($toc);
+
 		}
 		
 		// Hide the navTags
 		$('#' + docfix.settings.navTags).hide();
-		
-		// Create the nav bar and TOC
-		var $toc = $('<ul class="summary"></ul>');
-		
-		for(var file = 0; file < docfix.contentArray.length; file++) {
 			
-			var currentFile = docfix.contentArray[file];
-			
-			for(var header = 0; header < currentFile.headerList.length; header++) {
-				
-				var currentHeader = docfix.contentArray[file].headerList[header];
-				
-				if(currentHeader.getLayer() === 1 && !docfix.initialized) {
-					// We found a heading of layer 1
-					// Add it to the nav bar
-					var nav = $('<li><a class="header-menu">' + currentHeader.getText() + '</a></li>');
-					
-					nav.on('click', {file: docfix.contentArray[file], headerID: currentHeader.getHeaderID()}, function(e) {
-						e.data.file.search('header-' + e.data.headerID);
-						$(this).parent().children().removeClass("active");
-						$('#' + docfix.settings.nav).parent().parent().children().removeClass("active");
-						$(this).addClass("active");
-					});
-					
-					nav.css('cursor', 'pointer');
-					
-					$('#' + docfix.settings.nav).append(nav);
-				}
-				
-				var $h = docfix.createLi(currentHeader.getCaption(), currentHeader.getText(), currentHeader.getLayer(), currentHeader.getHeaderID());
-				$toc.append($h);
-			}
-			
-		}
-		
-		$('#' + docfix.settings.toc).append($toc);
-		$('#' + docfix.settings.toc).show();
-		
 		// Hide the summary div
 		$('#' + docfix.settings.summary).parent().hide();
-		
+
 		// Hide the doc content
 		$('#' + docfix.settings.content).hide();
 		
-		docfix.pushHistory('Documentation TOC', '');
+		// Show table of content
+		$('#' + docfix.settings.toc).show();
 		
-		if(!docfix.initialized) {
+		if(docfix.initialized === true) {
+			// Push history
+			docfix.pushHistory('Documentation TOC', '');
+		}
+		
+		if(docfix.initialized === false) {
+			// Remember application initialisation
 			docfix.initialized = true;
 		}
 		
@@ -453,6 +461,12 @@ $(function () {
 			this.prettyPrint = true;
 		}
 		
+		// Set onclick handler for cross references
+		$('.docfix-crossref').on('click', function(e) {
+			e.preventDefault();
+			docfix.search($(this).attr('href'));
+		})
+		
 		// Update scrollspy
 		$('[data-spy="scroll"]').each(function () {
 			$(this).scrollspy('refresh');
@@ -577,15 +591,6 @@ $(function () {
 				
 				that.navTags.push(new docfix.NavTag($v.text(), $v.attr('id')));
 			}
-			
-			if($v.is("a")) {
-				
-				// Setup click event for hyperlinks
-				$v.on('click', function(e) {
-					e.preventDefault();
-					docfix.search($v.attr('href'));
-				});
-			}
 				
 			if(isHeading) {
 				var headerID = that.addHeader(caption, text, layer);
@@ -646,7 +651,7 @@ $(function () {
 		
 		var state = History.getState(); // Note: We are using History.getState() instead of event.state
 		
-		if (state.internal != false) {
+		if (state.internal === true) {
 			// no need for pushstate caused changes
 			return;
 		}
