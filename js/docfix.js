@@ -369,7 +369,7 @@ $(function () {
 		$.ajax({
 			url: that.filename,
 			success: function(data) {
-				that.content = data.replace(/\n/g, "").replace(/\t/g, "");
+				that.content = data;
 				that.isLoaded = true;
 			},
 			async: false,
@@ -444,8 +444,9 @@ $(function () {
 			// Convert content of .prettyprint back to text
 			
 			var sources = $('.prettyprint');
-			$.each(sources, function(k, v){
-			    $(this).text($(this).html());
+			
+			$.each(sources, function(){
+				$(this).text($(this).html().replace(/^(\t*)( *)/g, "").replace(/\n(\t*)( *)/g, "\n"));
 			});
 			
 			prettyPrint();
@@ -453,9 +454,9 @@ $(function () {
 		}
 		
 		// Update scrollspy
-	    $('[data-spy="scroll"]').each(function () {
-	        $(this).scrollspy('refresh');
-	    });
+		$('[data-spy="scroll"]').each(function () {
+			$(this).scrollspy('refresh');
+		});
 			
 	};
 	
@@ -562,7 +563,7 @@ $(function () {
 				layer = 4;
 			}
 			
-			if($v.is("a") && $v.attr('class') === 'doc-navtag') {
+			if($v.is("a") && $v.attr('class') === 'docfix-navtag') {
 				// We found a navi tag
 				// => Add it to the list of navi tags
 				
@@ -624,16 +625,17 @@ $(function () {
 	var applicationStart = true;
 	
 	// Prepare
-    var History = window.History; // Note: We are using a capital H instead of a lower h
-    if ( !History.enabled ) {
-         // History.js is disabled for this browser.
-         // This is because we can optionally choose to support HTML4 browsers or not.
-        return false;
-    }
+	var History = window.History; // Note: We are using a capital H instead of a lower h
+	if ( !History.enabled ) {
+		// History.js is disabled for this browser.
+		// This is because we can optionally choose to support HTML4 browsers or not.
+		return false;
+	}
 
-    // Bind to StateChange Event
-    History.Adapter.bind(window, 'statechange', function(){ // Note: We are using statechange instead of popstate
-        var state = History.getState(); // Note: We are using History.getState() instead of event.state
+	// Bind to StateChange Event
+	History.Adapter.bind(window, 'statechange', function(){ // Note: We are using statechange instead of popstate
+		
+		var state = History.getState(); // Note: We are using History.getState() instead of event.state
 		
 		if (state.internal != false) {
 			// no need for pushstate caused changes
@@ -649,11 +651,11 @@ $(function () {
 			docfix.run();
 		}
 		
-    });
+	});
 
-    if(applicationStart) {
-    	
-    	var uri = decodeURIComponent($(location).attr('href').replace(/\/$/, ''));
+	if(applicationStart) {
+	
+		var uri = decodeURIComponent($(location).attr('href').replace(/\/$/, ''));
 		var split = uri.split('?');
 		
 		docfix.run();
@@ -663,6 +665,6 @@ $(function () {
 		}
 		
 		applicationStart = false;
-    }
-    
+	}
+
 });
