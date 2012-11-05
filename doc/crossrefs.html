@@ -1,7 +1,14 @@
 <h2>Cross-Referencing</h2>
 
-<h3>What is Cross-Referencing ?</h3>
+<h3>What is Crossreferencing ?</h3>
+<a id="ref-setup" class="docfix-navtag">Cross references</a>
 
+<p>
+	From time to time it may make sense to add a link / reference to some other 
+	sections or chapters of your documentation. DocFix is able to handle refrences 
+	to targets inside any of the defined content files.
+	Use the following examples and descriptions to set up a working reference.
+</p>
 
 <h3>Setting up a cross reference</h3>
 <p>
@@ -10,32 +17,34 @@
 </p>
 
 <p>
-	The following example will set up an cross-reference to a destination called dest.
+	The following example will set up an cross reference to a destination called dest.
 </p>
 <pre class="prettyprint linenums lang-html">
-	<a href="#" onclick="docfix.search('dest');"> Link caption </a>
+	<a href="dest" class="docfix-crossref"> Link caption </a>
 </pre>
 
 
-<h3>Setting up a cross reference destination</h3>
 
+
+<h3>Setting up a cross reference destination</h3>
+<a id="ref-dest-setup" class="docfix-hidden"> </a>
 <p>
 	First of all, a destination can be every html tag used in your documentation.
 	The only thing that matters is the value of the id attribute. 
 </p>
 <p>
-	Please read "How cross-referencing works" to make sure your
+	Please read "How crossreferencing works" to make sure your
 	destination is really found in the document.
 </p>
 <pre class="prettyprint linenums lang-html">
-	<a id="destinationA">sourcetag</a> 
+	<a id="destinationA">destination content</a> 
 	<span id="destinationB">...</span>
 </pre>
 
 <blockquote>
 	You may use the css class <span class="label">docfix-hidden</span> to 
 	hide your destination to the viewer.
-	If someone searches for your destination or just clicks on a cross-reference 
+	If someone searches for your destination or just clicks on a cross reference 
 	the document will still be scrolled to the location of your destination.
 </blockquote>
 <div class="alert alert-warning">
@@ -43,13 +52,79 @@
 	for hiding your destination tags, because this will crash the scrolling.
 </div>
 
-<h3>How cross-referencing works</h3>
-Link to a cross-document reference 
-Destination markup: 
 
-<h3>Setting up nav tags</h3>
 
-<a id="chapter1-2nd" class="docfix-navtag">Navtag</a>
-<a id="chapter1-3nd" class="docfix-navtag">Navtag</a>
-<a id="chapter1-4nd" class="docfix-navtag">Navtag</a>
+<h3>How crossreferencing works</h3>
+
+<p>
+	DocFix will start searching for the requested target in the first content 
+	file you defined. On success, that means if the requested target was found inside 
+	the content file, the content file will be displayed and scrolled to the requested target.
+</p>
+<p>
+	If the requested target id was not found inside the first content file, 
+	DocFix searches the second content file and so on.
+</p>
+<p>
+	Please take care of targets with identical target ids. Every search action will start 
+	at the first defined content file. Therefore all targets with the same id that were 
+	defined after the first match will never be found / displayed.
+</p>
+
+
+<h3>Link to documentation content from outside DocFix</h3>
+<p>
+	DocFix allows you to define direct links to some content elements of your documentation.
+</p>
+<p>
+	The following example will create a direct link to the target called targetID.
+</p>
+<p>
+	Look <a href="ref-dest-setup" class="docfix-crossref">here</a> to find 
+	out how reference targets are defined.
+</p>
+ 
+<pre class="prettyprint linenums lang-html">
+	<a href="http://pathToDocFix/?targetID">Goto targetID</a> 
+</pre>
+
+
+<h3>Navtags</h3>
+<a id="rev-navtags" class="docfix-navtag">Navtags</a>
+
+<h4>What is a Navtag?</h4>
+<p>
+	Can you see the list or navigation bar on the left? 
+</p>
+<p>
+	The content of this navigation bar can be defined by setting up some (hidden) 
+	hyperlinks.
+</p>
+<p>
+	During the document parsing process DocFix searches for this tags and adds them 
+	to the navigation bar. If you can see, the position of the document gets updated when  
+	the user scrolls through your document.
+</p>
+<p>
+	The name of the first navtag can be defined inside the configuration section. 
+	Please look the documentation of the 
+	<a href="config-setup" class="docfix-crossref">configuration options</a>
+	in chapter one for details.
+</p>
+
+<blockquote>
+	A navigation bar with navtags will only be shown, if at least one navtag was defined.
+</blockquote>
+
+
+
+<h4>How to define a Navtag</h4>
+
+<pre class="prettyprint linenums lang-html">
+	<a id="uniqueNavtagID" class="docfix-navtag">Navtag title</a> 
+</pre>
+
+<div class="alert alert-info">
+	Note: The uniqueNavtagID must only be unique within the affected content file.
+</div>
 
