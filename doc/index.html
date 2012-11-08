@@ -21,7 +21,6 @@
 		<script type="text/javascript">
 		    docfix.settings = {
 			    nav: 'docfix-nav',
-			    navScrollSpy: 'docfix-scrollspy',
 			    navTags: 'docfix-navtags',
 			    content: 'docfix-content',
 			    summary: 'docfix-summary',
@@ -53,23 +52,27 @@
 			<div class="mainbox">			
 			    
 			    <!-- Maybe this is a good place for adding a nice image/logo -->
-			    <div class="navbar">
-				<div class="navbar-inner">
-				    <ul class="nav">
-					<li class="active">
-						<a href=".">Table of Contents</a>
-					</li>
-
-					<li class="dropdown">
-					    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-						    Chapters <b class="caret"></b>
-					    </a>
-					    <ul class="dropdown-menu" id="docfix-nav">
-						<!-- Main headers will be added here -->
-					    </ul>
-					</li>
-				    </ul>
+				<div style="text-align: center;">
+					<img src="img/docfix.png" alt="DocFix documentation image" class="docfix-logo"/>
 				</div>
+				
+				<div class="navbar">
+					<div class="navbar-inner">
+						<ul class="nav">
+						<li class="active">
+							<a href=".">Table of Contents</a>
+						</li>
+
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+								Chapters <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu" id="docfix-nav">
+							<!-- Main headers will be added here -->
+							</ul>
+						</li>
+						</ul>
+					</div>
 			    </div>
 
 			    <div id="docfix-toc">

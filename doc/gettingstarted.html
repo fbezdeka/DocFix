@@ -1,8 +1,104 @@
 <h2>Getting started</h2>
 
 <h3>What is DocFix ?</h3>
+<p>
+	DocFix is a simple documentation generator written in Javascript.
+</p>
+<p>
+	See the following documentation for information about how to setup DocFix 
+	and how to markup your documentation using a combination of html and css to 
+	generate a fully indexed, and nice to read documentation.
+</p>
+
 
 <h3>Components of DocFix</h3>
+
+<p>
+	DocFix consists of four main components:
+</p>
+<ol>
+	<li>The DocFix template file (the html template)</li>
+	<li>The DocFix templating engine (the javascript file)</li>
+	<li>The DocFix css file (layout definitions) </li>
+	<li>Your content files (files with your documentation / text inside)</li>
+</ol>
+
+<h4>The template file</h4>
+<p>
+	The template file is an html file, that includes the DocFix javascript part,
+	the style definitions (css files) and some minimal DocFix configuration. You may
+	have a look at the <span class="badge">index.html</span> 
+	file from the top level directory of the DocFix repository. 
+	This file contaions all required html tags and the mentioned references and configuration.
+</p>
+
+<h4>The templating engine</h4>
+<p>
+	The templating engine is just one javascript file called <span class="badge">docfix.js</span> 
+	and located in the <span class="badge">js</span> folder of the DocFix repository. Your template 
+	file has to reference this script.
+</p>
+
+<h4>Layout definitions</h4>
+<p>
+	The layout is defined in some css files within the <span class="badge">css</span> folder 
+	of the DocFix repository. You may edit this files to change the documentation layout.
+</p>
+<div class="alert alert-info">
+	<strong>Note: </strong> The layout definition of DocFix is based on the bootstrap css library. You may also 
+	use layout definitions out of this library.
+</div>
+
+<h4>Content files</h4>
+<p>
+	As you will see in the Configuration section, DocFix is able to load your documentation 
+	conten from several files. This enables you to split your documentation into different files.
+</p>
+<p>
+	Your content files will be processed during the DocFix startup. See the "Features" section 
+	to see what exactly will be done during the parsing process.
+</p>
+
+
+
+<h3>Features of DocFix</h3>
+
+<ul>
+	<li>Automated generation of
+		<ul>
+			<li>Table of contents</li>
+			<li>Chapter summaries</li>
+		</ul>
+	</li>
+	<li>Numbering of headers</li>
+	<li>Navtags</li>
+	<li>Crossreferences</li>
+	<li>Direct referencing of user defined content</li>
+	
+</ul>
+
+<p>
+	Some of the mentioned features require some content pre-processing before the 
+	content is shown to the user. Therefore some html tags of your content files will 
+	be parsed and used for further processing. See below for some technical details.
+</p>
+
+<h4>Automated generation of indexes</h4>
+<p>
+	During the document loading and pre-processing mechanism DocFix searches for 
+	headers inside your documents. All <span class="label">h2</span> 
+	to <span class="label">h5</span> are used for creating indexes and 
+	chapter summaries. All found headers will be numbered in the order they appeared. 
+	(DocFix will start searching for headers in the first specified content file and will 
+	continue in the same order they were added.)
+</p>
+
+<h4>Crossreferences and NavTags</h4>
+<p>
+	Please see <a href="ref-setup" class="docfix-crossref">Chapter 2</a> for more details.
+</p>
+
+
 
 <h3>Configuration</h3>
 
@@ -15,10 +111,10 @@
 	See below for detailed parameter meanings and possible values.
 </p>
 
+<a id="config-setup" class="docfix-navtag">Configuration parameters</a>
 <pre class="prettyprint linenums lang-javascript">
 docfix.settings = {
 	nav: 'docfix-nav',
-	navScrollSpy: 'docfix-scrollspy',
 	navTags: 'docfix-navtags',
 	content: 'docfix-content',
 	summary: 'docfix-summary',
@@ -30,5 +126,97 @@ docfix.settings = {
 };
 </pre>
 
-<a id="config-setup" class="docfix-navtag">Configuration parameters</a>
+<table class="table table-striped table-condensed table-bordered docfix-table">
+	
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Explanation</th>
+		</tr>
+	</thead>
+	
+	<tr>
+		<td>nav</td>
+		<td>
+			All first level headers (chapters) be added to the specified unordered 
+			list. The value of nav has to be the value of the id attribute of an 
+			ul tag inside the template file.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>navTags</td>
+		<td>
+			All navtags will be added to the specified unorderd 
+			list. The value of nav has to be the value of the id attribute of an 
+			ul tag inside the template file.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>content</td>
+		<td>
+			The documentation document will be loaded into the html tag with the given 
+			id.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>summary</td>
+		<td>
+			The chapter summary will be loaded into the html tag with the given id.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>toc</td>
+		<td>
+			The toc (table of contents) will be loaded into the html tag with the given id.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>topId</td>
+		<td>
+			The html tag of the template file referenced by this id will be shown 
+			(scrolled to) when the user clicks on the first navtag. The caption of this first 
+			navtag (toTopButton) can be speciefied with the <span class="label">topText</span> parameter.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>topText</td>
+		<td>
+			The text / caption of the first navTag (toTopButton).
+		</td>
+	</tr>
+	
+	<tr>
+		<td>basePath</td>
+		<td>
+			<p>
+				This parameter is needed by the content file loader. You may add serveral 
+				files to your documentation by adding their filenames to the array of content files. 
+				(See <span class="label">files</span> parameter.)
+			</p>
+			<p>
+				If your content files are located inside the top directory of your virtual host, 
+				the <span class="label">basePath</span> has to be "/".
+				Otherwise the <span class="label">basePath</span> has to specify the path to your 
+				content files. (e.g. /sub/ if all documents are located at example.com/sub/)
+			</p>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>files</td>
+		<td>
+			This configuration parameter holds an array of content files. All 
+			files that are given in this configuration parameter will be parsed 
+			and will be presented as a part of your document.
+		</td>
+	</tr>
+	
+</table>
+
 
