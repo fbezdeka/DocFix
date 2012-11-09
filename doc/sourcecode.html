@@ -1,4 +1,21 @@
-<h2>Source-Code-Demo</h2>
+<h2>Source-Code</h2>
+
+
+<h3>Source code with line numbering</h3>
+
+<p>
+	Use the following html markup to create a source code block with line numbering 
+	enabled.
+</p>
+<code class="prettyprint lang-html">
+	<pre class="prettyprint linenums">
+System.out.println("Your source code...");
+	</pre>
+</code>
+
+<p>
+	An example of Java source code:
+</p>
 
 <pre class="prettyprint linenums">
 System.out.println("Hello world!");	// Comment
@@ -6,11 +23,61 @@ System.out.println("Hello world!");
 System.out.println("Hello world!");
 System.out.println("Hello world!");
 System.out.println("Hello world!");
-System.out.println("Hello world!"); System.out.println("Hello world!"); System.out.println("Hello world!"); 
-System.out.println("Hello world!"); System.out.println("Hello world!"); System.out.println("Hello world!"); 
-System.out.println("Hello world!"); System.out.println("Hello world!"); System.out.println("Hello world!");
-System.out.println("Hello world!");System.out.println("Hello world!");System.out.println("Hello world!"); 
-System.out.println("Hello world!");System.out.println("Hello world!");System.out.println("Hello world!");
-System.out.println("Hello world!");System.out.println("Hello world!");System.out.println("Hello world!");
-System.out.println("Hello world!");System.out.println("Hello world!");
+System.out.println("Hello world!");
+</pre>
+
+
+
+<h3>Source code without line numbering</h3>
+
+
+<p>
+	Use the following html markup to create a source code block without line numbering.
+</p>
+<code class="prettyprint lang-html">
+	<pre class="prettyprint">
+System.out.println("Your source code...");
+	</pre>
+</code>
+
+<p>
+	An example of Java source code:
+</p>
+
+<pre class="prettyprint">
+System.out.println("Hello world!");	// Comment
+System.out.println("Hello world!");
+System.out.println("Hello world!");
+System.out.println("Hello world!");
+System.out.println("Hello world!");
+</pre>
+	
+<h3>Available languages</h3>
+
+<p>
+	The source code highlighting should work for C and friends, Java, Python, 
+	Bash, SQL, HTML, XML, CSS, Javascript, and Makefiles. 
+	It works passably on Ruby, PHP, VB, and Awk and a decent subset of Perl and Ruby.
+</p>
+
+<p>
+	You may use the class attribute of the pre tag to define the programming 
+	language. The only thing you have to do is adding a class called lang-*, where 
+	* is the name of the programming language. The following example will enable the css 
+	highlighting profile.
+</p>
+
+<p>
+	Markup for using css highlighting:
+</p>
+
+<code class="prettyprint">
+	<pre class="prettyprint linenums lang-css">Your css code...</pre>
+</code>
+
+<pre class="prettyprint linenums lang-css">
+body {
+	font-size: 10px;
+	border: 1px solid black;
+}
 </pre>
