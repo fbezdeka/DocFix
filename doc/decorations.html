@@ -1,33 +1,100 @@
-<h2>Comments</h2>
-				
+<h2>Text decorations</h2>
+
+<div class="alert alert-info">
+	<strong>Note:</strong> DocFix is based on the bootstrap css library. You are 
+	able to use any of the bootstrap markups inside your documentation. Please consult 
+	the bootstrap documentation for available features and markups.
+</div>
+
+<h3>Inline elements</h3>
+
+<h3>Block elements</h3>
+
+<h4>Paragraph boxes</h3>
+
 <p>
-	Lorem ipsum dolor sit amet, <span class="label">consetetur</span> sadipscing elitr, sed diam nonumy 
-	eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et <span class="label label-success">justo duo dolores</span> 
-	et ea rebum. Stet clita kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-	sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et <span class="badge">justo</span> duo dolores et ea rebum. 
-	<span class="badge badge-success">Stet clita</span> kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet.
+	The following boxes are not part of DocFix itself. They are part of the bootstrap 
+	css library. You may have a look at the bootrap documentation for furhter details.
 </p>
 
+<h5>Info box</h5>
+<pre class="prettyprint linenums">
+<div class="alert alert-info">
+	Your info text
+</div>
+</pre>
+<div class="alert alert-info">
+	Your info text
+</div>
+
+<h5>Warning box</h5>
+<pre class="prettyprint linenums">
+<div class="alert alert-warning">
+	Your warning text
+</div>
+</pre>
+<div class="alert alert-warning">
+	Your warning text
+</div>
+
+<h5>Success box</h5>
+<pre class="prettyprint linenums">
+<div class="alert alert-success">
+	Your success text
+</div>
+</pre>
+<div class="alert alert-success">
+	Your success text
+</div>
+
+<h5>Error box</h5>
+<pre class="prettyprint linenums">
+<div class="alert alert-error">
+	Your error text
+</div>
+</pre>
+<div class="alert alert-error">
+	Your error text
+</div>
+
+
+
+<h4>Comments</h4>
+
+<p>
+	DocFix supports two different possibilities to add some comments to your 
+	documentation. The first one is defined by DocFix itself, the second one comes 
+	from the bootstrap css library. You may define your own text and comment styles 
+	in your own css files.
+</p>
+
+<h5>The DocFix comment</h5>
+<p>
+	The DocFix comment is produced by using the blockquote html tag. 
+</p>
+<pre class="prettyprint linenums">
 <blockquote>
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 
-	eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-	sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet.
+	Your comment
+</blockquote>
+</pre>
+
+<blockquote>
+	Your comment
 </blockquote>
 
+
+<h5>The bootstrap comment</h5>
+<p>
+	Use the css class well from the bootstrap library, to create the following 
+	example comment.
+</p>
+
+<pre class="prettyprint linenums">
 <div class="well">
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 
-	eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-	sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-	sanctus est Lorem ipsum dolor sit amet.
+	Your comment
+</div>
+</pre>
+
+<div class="well">
+	Your comment
 </div>
