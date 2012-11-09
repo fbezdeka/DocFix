@@ -32,5 +32,5 @@ request for each branch. This allows me to review and pull in new features or im
 
 ## License
 
-The RESTlight framework is released under the LGPL License (Lesser GNU Public License).
+DocFix is released under the LGPL License (Lesser GNU Public License).
 See `LICENSE` for details.
