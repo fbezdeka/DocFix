@@ -47,6 +47,17 @@ $(function () {
 	docfix.initialized = false;
 	
 	/**
+	 * The docfix version
+	 */
+	docfix.versionInfo = {
+		patch : 0,
+		minor : 0,
+		major : 1
+	}
+	
+	docfix.version = docfix.versionInfo.major + "." + docfix.versionInfo.minor + "." + docfix.versionInfo.patch;
+	
+	/**
 	 * The main method. Run it on body load.
 	 * 
 	 * @param start The number were to start numeration of headers. Default is 0.
@@ -122,6 +133,9 @@ $(function () {
 			// Remember application initialisation
 			docfix.initialized = true;
 		}
+		
+		// Show version information
+		$('#' + docfix.settings.versionInfo).html(docfix.version);
 		
 	};
 	
@@ -449,11 +463,16 @@ $(function () {
 		
 		// Call source code plugin
 		if(!this.prettyPrint) {
-			// Convert content of .prettyprint back to text
+			// Convert content of pre and code blocks back to text
+
+			var pre = $('pre');
+			var code = $('code');
 			
-			var sources = $('.prettyprint');
+			$.each(pre, function(){
+				$(this).text($(this).html());
+			});
 			
-			$.each(sources, function(){
+			$.each(code, function(){
 				$(this).text($(this).html());
 			});
 			
