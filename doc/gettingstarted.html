@@ -114,6 +114,7 @@
 <a id="config-setup" class="docfix-navtag">Configuration parameters</a>
 <pre class="prettyprint linenums lang-javascript">
 docfix.settings = {
+	versionInfo: 'docfix-version',
 	nav: 'docfix-nav',
 	navTags: 'docfix-navtags',
 	content: 'docfix-content',
@@ -134,6 +135,15 @@ docfix.settings = {
 			<th>Explanation</th>
 		</tr>
 	</thead>
+	
+	<tr>
+		<td>versionInfo</td>
+		<td>
+			If a html tag inside the docfix template file has the id attribute set 
+			to the value of this configuration parameter, then the content of this 
+			html tag will be set to the current docfix version number.
+		</td>
+	</tr>
 	
 	<tr>
 		<td>nav</td>
