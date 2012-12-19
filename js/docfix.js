@@ -53,7 +53,7 @@ $(function () {
 		patch : 0,
 		minor : 0,
 		major : 1
-	}
+	};
 	
 	docfix.version = docfix.versionInfo.major + "." + docfix.versionInfo.minor + "." + docfix.versionInfo.patch;
 	
@@ -484,7 +484,7 @@ $(function () {
 		$('.docfix-crossref').on('click', function(e) {
 			e.preventDefault();
 			docfix.search($(this).attr('href'));
-		})
+		});
 		
 		// Update scrollspy
 		$('[data-spy="scroll"]').each(function () {
@@ -616,8 +616,19 @@ $(function () {
 			}
 				
 			if(isHeading) {
-				var headerID = that.addHeader(caption, text, layer);
-				$v.attr('id', 'header-' + headerID);
+				var assignedID = $v.attr('id');
+				
+				if(assignedID) {
+					// An id attribute was already assigned
+					// => Do not override it
+					that.addHeader(caption, text, layer);
+				} else {
+					// There was no id attribute defined
+					// => Assign auto generated id
+					var headerID = that.addHeader(caption, text, layer);
+					$v.attr('id', 'header-' + headerID);
+				}
+				
 			}
 			
 		};
