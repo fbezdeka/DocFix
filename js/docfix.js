@@ -90,7 +90,7 @@ $(function () {
 						var nav = $('<li><a class="header-menu">' + currentHeader.getText() + '</a></li>');
 
 						nav.on('click', {file: docfix.contentArray[file], headerID: currentHeader.getHeaderID()}, function(e) {
-							e.data.file.search('header-' + e.data.headerID);
+							e.data.file.search(e.data.headerID);
 							$(this).parent().children().removeClass("active");
 							$('#' + docfix.settings.nav).parent().parent().children().removeClass("active");
 							$(this).addClass("active");
