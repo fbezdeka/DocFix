@@ -16,7 +16,7 @@ DocFix is a simple document / documentation generator written in Javascript.
 
 ## Documentation / Live-Demo
 
-See the [Documentation side](http://docfix.flo.bezdeka.de/doc)
+Please have a look at the [documentation](http://docfix.flo.bezdeka.de/doc)
 
 
 ## How to Contribute
