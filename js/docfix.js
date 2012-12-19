@@ -198,7 +198,7 @@ $(function () {
 		$li.append($a);
 		
 		$a.on('click', function() {
-			docfix.search('header-' + headerID);
+			docfix.search(headerID);
 		});
 		
 		return $li;
@@ -366,12 +366,16 @@ $(function () {
 	 * @param caption The caption of the header you want to add
 	 * @param text The text of the header you want to add
 	 * @param level The level of the header you want to add (1.2.2 ==> 3)
+	 * @param headerID The id you want to be assigned to the new header (optional)
 	 * @returns {Number}
 	 */
-	docfix.ContentFile.prototype.addHeader = function (caption, text, level) {
+	docfix.ContentFile.prototype.addHeader = function (caption, text, level, headerID) {
 		
+		if(!headerID) {
+			headerID = 'header-' + this.lastHeaderID;
+		}
 		
-		this.headerList.push(new docfix.Header(text, level, caption, this.lastHeaderID));
+		this.headerList.push(new docfix.Header(text, level, caption, headerID));
 		
 		this.lastHeaderID++;
 		
@@ -621,7 +625,7 @@ $(function () {
 				if(assignedID) {
 					// An id attribute was already assigned
 					// => Do not override it
-					that.addHeader(caption, text, layer);
+					that.addHeader(caption, text, layer, assignedID);
 				} else {
 					// There was no id attribute defined
 					// => Assign auto generated id
