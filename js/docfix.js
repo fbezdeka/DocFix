@@ -126,7 +126,8 @@ $(function () {
 		
 		if(docfix.initialized === true) {
 			// Push history
-			docfix.pushHistory('Documentation TOC', '');
+			var title = $(document).attr('title');
+			docfix.pushHistory(title + ' TOC', '');
 		}
 		
 		if(docfix.initialized === false) {
@@ -520,8 +521,8 @@ $(function () {
 			
 			if($v.attr('id') === id) {
 				that.display();
-				docfix.scrollToId($v.attr('id'));				
-				docfix.pushHistory('Documentation', '?' + id);
+				docfix.scrollToId($v.attr('id'));
+				docfix.pushHistory($(document).attr('title'), '?' + id);
 				result = true;
 			}
 			
