@@ -58,6 +58,11 @@ $(function () {
 	docfix.version = docfix.versionInfo.major + "." + docfix.versionInfo.minor + "." + docfix.versionInfo.patch;
 	
 	/**
+	 * The title of the current document
+	 */
+	docfix.documentationTitle = $(document).attr('title');
+	
+	/**
 	 * The main method. Run it on body load.
 	 * 
 	 * @param start The number were to start numeration of headers. Default is 0.
@@ -124,11 +129,8 @@ $(function () {
 		// Show table of content
 		$('#' + docfix.settings.toc).show();
 		
-		if(docfix.initialized === true) {
-			// Push history
-			var title = $(document).attr('title');
-			docfix.pushHistory(title + ' TOC', '');
-		}
+		// Push history
+		docfix.pushHistory(docfix.documentationTitle + ' - TOC', '');
 		
 		if(docfix.initialized === false) {
 			// Remember application initialisation
@@ -522,7 +524,7 @@ $(function () {
 			if($v.attr('id') === id) {
 				that.display();
 				docfix.scrollToId($v.attr('id'));
-				docfix.pushHistory($(document).attr('title'), '?' + id);
+				docfix.pushHistory(docfix.documentationTitle, '?' + id);
 				result = true;
 			}
 			
@@ -677,47 +679,51 @@ $(function () {
 	
 	var applicationStart = true;
 	
-	// Prepare
-	var History = window.History; // Note: We are using a capital H instead of a lower h
-	if ( !History.enabled ) {
-		// History.js is disabled for this browser.
-		// This is because we can optionally choose to support HTML4 browsers or not.
-		return false;
-	}
+	(function(window,undefined){
 
-	// Bind to StateChange Event
-	History.Adapter.bind(window, 'statechange', function(){ // Note: We are using statechange instead of popstate
-		
-		var state = History.getState(); // Note: We are using History.getState() instead of event.state
-		
-		if (state.internal === true) {
-			// no need for pushstate caused changes
-			return;
+		// Prepare
+		var History = window.History;
+		if ( !History.enabled ) {
+			// History.js is disabled for this browser.
+			// This is because we can optionally choose to support HTML4 browsers or not.
+			return false;
 		}
-		
-		var uri = state.url;
-		var split = uri.split('?');
-		
-		if(split.length > 1) {
-			docfix.restoreHistory(split[1]);
-		} else {
-			docfix.run();
-		}
-		
-	});
-
-	if(applicationStart) {
 	
-		var uri = decodeURIComponent($(location).attr('href').replace(/\/$/, ''));
-		var split = uri.split('?');
+		// Bind to StateChange Event
+		History.Adapter.bind(window, 'statechange', function() {
+			
+			var state = History.getState();
+			
+			if (state.internal === true || state.internal === 'pushState') {
+				// no need for pushstate caused changes
+				return;
+			}
+			
+			var uri = state.url;
+			var split = uri.split('?');
+			
+			if(split.length > 1) {
+				docfix.restoreHistory(split[1]);
+			} else {
+				docfix.run();
+			}
+			
+		});
+	
+		if(applicationStart) {
 		
-		docfix.run();
-		
-		if(split.length > 1) {	
-			docfix.restoreHistory(split[1]);
+			var uri = decodeURIComponent($(location).attr('href').replace(/\/$/, ''));
+			var split = uri.split('?');
+			
+			docfix.run();
+			
+			if(split.length > 1) {	
+				docfix.restoreHistory(split[1]);
+			}
+			
+			applicationStart = false;
 		}
 		
-		applicationStart = false;
-	}
+	})(window);
 
 });
