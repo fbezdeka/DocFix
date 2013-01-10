@@ -10,6 +10,7 @@
 		
 		<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="../css/docfix.css" type="text/css">
+		<link rel="stylesheet" href="../css/docfix-print.css" type="text/css" media="print">
 		<link rel="stylesheet" href="../css/prettify.css" type="text/css">
 		
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -19,86 +20,87 @@
 		<script type="text/javascript" src="../js/lang-css.js"></script>
 		
 		<script type="text/javascript">
-		    docfix.settings = {
+			docfix.settings = {
 				versionInfo: 'docfix-version',
-			    nav: 'docfix-nav',
-			    navTags: 'docfix-navtags',
-			    content: 'docfix-content',
-			    summary: 'docfix-summary',
-			    toc: 'docfix-toc',
-			    topId: 'docfix-top',
-			    topText: 'Top',
-			    basePath: '/doc/',
-			    files: ['gettingstarted.html', 'crossrefs.html', 'sourcecode.html', 'decorations.html']
-		    };
+				nav: 'docfix-nav',
+				navTags: 'docfix-navtags',
+				content: 'docfix-content',
+				summary: 'docfix-summary',
+				toc: 'docfix-toc',
+				topId: 'docfix-top',
+				topText: 'Top',
+				basePath: '/doc/',
+				files: ['gettingstarted.html', 'crossrefs.html', 'sourcecode.html', 'decorations.html']
+			};
 		</script>
 	</head>
 	
 	<body data-spy="scroll" data-target=".docfix-navtags" data-offset="110">
 	
-	    <div class="container">
-	    	
-	    	<div class="row">
-	    	
-		    <div class="span3 docfix-navtags">
-			<!-- left navigation bar (navTags) -->
-			<div id="docfix-scrollspy" class="docfix-navtag-container">
-				<ul id="docfix-navtags" class="nav nav-list affix docfix-navtags">
-				    <!--  navtags will be added here -->
-				</ul>
-			</div>
-		    </div>
-		    
-		    <div class="span8">
-			<div class="mainbox">			
-			    
-			    <!-- Maybe this is a good place for adding a nice image/logo -->
-				<div style="text-align: center;">
-					<img src="img/docfix.png" alt="DocFix documentation image" class="docfix-logo"/>
-				</div>
-				
-				<div class="navbar">
-					<div class="navbar-inner">
-						<ul class="nav">
-						<li class="active">
-							<a href=".">Table of Contents</a>
-						</li>
-
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-								Chapters <b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu" id="docfix-nav">
-							<!-- Main headers will be added here -->
-							</ul>
-						</li>
+		<div class="container">
+			
+			<div class="row">
+			
+				<div class="span3 docfix-navtags">
+					<!-- left navigation bar (navTags) -->
+					<div id="docfix-scrollspy" class="docfix-navtag-container">
+						<ul id="docfix-navtags" class="nav nav-list affix docfix-navtags">
+							<!--  navtags will be added here -->
 						</ul>
 					</div>
-			    </div>
+				</div>
+			
+				<div class="span8">
+				
+					<div class="docfix-mainbox">
+				
+						<!-- Maybe this is a good place for adding a nice image/logo -->
+						<div style="text-align: center;">
+							<img src="img/docfix.png" alt="DocFix documentation image" class="docfix-logo"/>
+						</div>
+				
+						<div class="navbar">
+							<div class="navbar-inner">
+								<ul class="nav">
+								<li class="active">
+									<a href=".">Table of Contents</a>
+								</li>
+		
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+										Chapters <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" id="docfix-nav">
+									<!-- Main headers will be added here -->
+									</ul>
+								</li>
+								</ul>
+							</div>
+						</div>
 
-			    <div id="docfix-toc">
-				<h1>DocFix - Documentation</h1>
-				<p style="text-align: center;">
-					(version <span id="docfix-version"></span>)
-				</p>
+						<div id="docfix-toc">
+							<h1>DocFix - Documentation</h1>
+							<p style="text-align: center;">
+								(version <span id="docfix-version"></span>)
+							</p>
+			
+							<h2>Table of Contents</h2>					
+						</div>
 
-				<h2>Table of Contents</h2>					
-			    </div>
-
-			    <div id="docfix-top"></div>
-
-			    <div>
-				Chapter Summary
-				<div id="docfix-summary"></div>
-			    </div>
+						<div id="docfix-top"></div>
+	
+						<div>
+							Chapter Summary
+							<div id="docfix-summary"></div>
+						</div>
 
 
-			    <div id="docfix-content"></div>
+						<div id="docfix-content"></div>
+					</div>
+
+					<span class="copyright">&copy; Florian Bezdeka, 2012</span>
+				</div>
 			</div>
-
-			<span class="copyright">&copy; Florian Bezdeka, 2012</span>
-		    </div>
 		</div>
-	    </div>
 	</body>
 </html>

@@ -38,7 +38,7 @@ img.docfix-logo {
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-div.mainbox {
+div.docfix-mainbox {
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 	border: 1px solid rgb(225, 225, 232);
@@ -157,6 +157,7 @@ code.prettyprint {
 	font-size: 13px;
 	text-align: left;
 }
+
 div#docfix-content  img {
 	display: block;
 }

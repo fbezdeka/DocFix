@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+body {
+	width: 100%;
+	background-color: transparent;
+}
+
+body > .container > .row > .span3 {
+	width: 1%;
+}
+
+body > .container > .row > .span8 {
+	width: 99%;
+}
+
+#docfix-scrollspy {
+	display: none;
+}
+
+#docfix-nav {
+	display: none;
+}
+
+.navbar {
+	display: none;
+}
+
+div.docfix-mainbox {
+	background-color: transparent;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+	border: 0px;
+	padding: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: justify;
+}
