@@ -13,7 +13,7 @@
 <h3>Setting up a cross reference</h3>
 <p>
 	Setting up a cross reference is quite easy. It is nearly the same as 
-	defining a link in HTML syntax. Set the href attribute to "#" and add a onclick event.
+	defining a link in HTML syntax.
 </p>
 
 <p>
@@ -41,6 +41,19 @@
 <a id="destinationA">destination content</a> 
 <span id="destinationB">...</span>
 </pre>
+
+<p>
+	All defined destinations can be directly reached. Just point your 
+	webbrowser to your DocFix installation path and add the destination as a parameter.
+</p>
+<p>
+	Example: http://docfix.flo.bezdeka.de/doc/?ref-dest-setup
+</p>
+<div class="alert alert-warning">
+	There is one destination called "all" which is not usable. (It will be overwritten by DocFix itself.)
+	If this destination is requested, DocFix will generate one complete document and showing all content files at once.
+</div>
+
 
 <blockquote>
 	You may use the css class <span class="label">docfix-hidden</span> to 

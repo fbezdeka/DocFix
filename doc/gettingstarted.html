@@ -123,6 +123,8 @@ docfix.settings = {
 	topId: 'docfix-top',
 	topText: 'Top',
 	basePath: '/doc/',
+	completeDocButton: 'docfix-showall',
+	progress: 'docfix-progress',
 	files: ['contentA.html', 'contentB.html', 'contentc.html']
 };
 </pre>
@@ -157,7 +159,7 @@ docfix.settings = {
 	<tr>
 		<td>navTags</td>
 		<td>
-			All navtags will be added to the specified unorderd 
+			All navtags will be added to the specified unordered 
 			list. The value of nav has to be the value of the id attribute of an 
 			ul tag inside the template file.
 		</td>
@@ -215,6 +217,23 @@ docfix.settings = {
 				Otherwise the <span class="label">basePath</span> has to specify the path to your 
 				content files. (e.g. /sub/ if all documents are located at example.com/sub/)
 			</p>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>completeDocButton</td>
+		<td>
+			An on-click event will be registered for the html element with this id. 
+			If the user clicks this element DocFix will start the generation of one complete document instead 
+			of splitting at each content file. The complete documentation content will be shown.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>progress</td>
+		<td>
+			This parameter has to be the unique (html-) id of the div element holding 
+			holding the status bar. (Will be visible during parsing of content files)
 		</td>
 	</tr>
 	
