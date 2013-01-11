@@ -179,7 +179,7 @@ $(function () {
 			var summary = docfix.contentArray[i].generateSummary();
 			$('#' + docfix.settings.toc).append(summary);
 			
-			$('#' + docfix.settings.content).append(docfix.contentArray[i].plainContent);
+			$('#' + docfix.settings.content).append(docfix.contentArray[i].content.clone());
 			
 			// Update the progress bar
 			$('#' + docfix.settings.progress).children('div').children('div').css('width', ((i+1) / docfix.contentArray.length * 100) +'%');
@@ -404,9 +404,7 @@ $(function () {
 		
 		this.filename = filename;
 		this.isLoaded = false;
-		this.prettyPrint = false;
 		this.content = null;
-		this.plainContent = null;
 		
 		this.firstLevel = firstLevel;
 		this.secondLevel = 0;
@@ -473,7 +471,6 @@ $(function () {
 			url: that.filename,
 			success: function(data) {
 				that.content = data;
-				that.plainContent = data;
 				that.isLoaded = true;
 			},
 			async: false,
@@ -508,24 +505,20 @@ $(function () {
 	 */
 	docfix.ContentFile.prototype.afterDisplay = function() {
 		
-		// Call source code plugin
-		if(!this.prettyPrint) {
-			// Convert content of pre and code blocks back to text
-
-			var pre = $('pre');
-			var code = $('code');
-			
-			$.each(pre, function(){
-				$(this).text($(this).html());
-			});
-			
-			$.each(code, function(){
-				$(this).text($(this).html());
-			});
-			
-			prettyPrint();
-			this.prettyPrint = true;
-		}
+		// Convert content of pre and code blocks back to text
+		var pre = $('pre');
+		var code = $('code');
+		
+		$.each(pre, function(){
+			$(this).text($(this).html());
+		});
+		
+		$.each(code, function(){
+			$(this).text($(this).html());
+		});
+		
+		// Call the source code plugin
+		prettyPrint();
 		
 		// Set onclick handler for cross references
 		$('.docfix-crossref').on('click', function(e) {
@@ -554,7 +547,9 @@ $(function () {
 		$('#' + docfix.settings.summary).parent().show();
 		
 		// Show the content
-		$('#' + docfix.settings.content).html(this.content);
+		var $content = this.content.clone();
+		
+		$('#' + docfix.settings.content).html($content);
 		$('#' + docfix.settings.content).show();
 		
 		// Show the navtags (and clear it first)
