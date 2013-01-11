@@ -30,6 +30,8 @@
 				topId: 'docfix-top',
 				topText: 'Top',
 				basePath: '/doc/',
+				completeDocButton: 'docfix-showall',
+				progress: 'docfix-progress',
 				files: ['gettingstarted.html', 'crossrefs.html', 'sourcecode.html', 'decorations.html']
 			};
 		</script>
@@ -62,20 +64,30 @@
 						<div class="navbar">
 							<div class="navbar-inner">
 								<ul class="nav">
-								<li class="active">
-									<a href=".">Table of Contents</a>
-								</li>
-		
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-										Chapters <b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu" id="docfix-nav">
-									<!-- Main headers will be added here -->
-									</ul>
-								</li>
+									<li class="active">
+										<a href=".">Table of Contents</a>
+									</li>
+			
+									<li class="dropdown">
+										<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+											Chapters <b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu" id="docfix-nav">
+										<!-- Main headers will be added here -->
+										</ul>
+									</li>
+									
+									<li>
+										<a href="" id="docfix-showall">Show complete document</a>
+									</li>
 								</ul>
 							</div>
+						</div>
+						
+						<div id="docfix-progress">
+						    <div class="progress progress-striped">
+    							<div class="bar" style="width: 2%;"></div>
+    						</div>
 						</div>
 
 						<div id="docfix-toc">
@@ -98,7 +110,7 @@
 						<div id="docfix-content"></div>
 					</div>
 
-					<span class="copyright">&copy; Florian Bezdeka, 2012</span>
+					<span class="docfix-copyright">&copy; Florian Bezdeka, 2012</span>
 				</div>
 			</div>
 		</div>

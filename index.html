@@ -30,6 +30,8 @@
 				topId: 'docfix-top',
 				topText: 'Top',
 				basePath: '/',
+				completeDocButton: 'docfix-showall',
+				progress: 'docfix-progress',
 				files: ['contentfileA.html', 'contentfileB.html', 'contentfileC.html', 'contentFileD.html']
 			};
 		</script>
@@ -69,8 +71,18 @@
 											<!-- Main headers will be added here -->
 										</ul>
 									</li>
+									
+									<li>
+										<a href="" id="docfix-showall">Show complete document</a>
+									</li>
 								</ul>
 							</div>
+						</div>
+						
+						<div id="docfix-progress">
+						    <div class="progress progress-striped">
+    							<div class="bar" style="width: 2%;"></div>
+    						</div>
 						</div>
 		
 						<div id="docfix-toc">
@@ -90,7 +102,7 @@
 						<div id="docfix-content"></div>
 					</div>
 		
-					<span class="copyright">&copy; Your Name, Year</span>
+					<span class="docfix-copyright">&copy; Your Name, Year</span>
 				</div>
 			</div>
 		</div>

@@ -48,6 +48,10 @@ div.docfix-mainbox {
 	text-align: justify;
 }
 
+div#docfix-progress {
+	display: none;
+}
+
 .docfix-navtag {
 	visibility: hidden;
 	display: block;
@@ -172,36 +176,36 @@ div#docfix-content  img.left {
 	margin-right: 5px;
 }
 
-ul.summary {
+ul.docfix-summary {
 	list-style-type: none;
 }
 
-a.header-menu {
+a.docfix-header-menu {
 	font-size: 13px;
 }
 
-li.level-1 {
+li.docfix-level-1 {
 	padding-top: 10px;
 	padding-left: 0px;
 }
 
-li.level-2 {
+li.docfix-level-2 {
 	padding-left: 20px;
 }
 
-li.level-3 {
+li.docfix-level-3 {
 	padding-left: 40px;
 }
 
-li.level-4 {
+li.docfix-level-4 {
 	padding-left: 60px;
 }
 
-li span.number {
+li span.docfix-number {
 	margin-right: 5px;
 }
 
-span.copyright {
+span.docfix-copyright {
 	font-size: 13px;
 }
 

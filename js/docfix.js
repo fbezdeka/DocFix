@@ -73,13 +73,13 @@ $(function () {
 			docfix.createFileArray();
 			
 			if(start) {
-				docfix.generateTableOfContents(start);
+				docfix.generateChapterSummaries(start);
 			} else {
-				docfix.generateTableOfContents(0);
+				docfix.generateChapterSummaries(0);
 			}
 
 			// Create the nav bar and TOC
-			var $toc = $('<ul class="summary"></ul>');
+			var $toc = $('<ul class="docfix-summary"></ul>');
 
 			for(var file = 0; file < docfix.contentArray.length; file++) {
 
@@ -92,7 +92,7 @@ $(function () {
 					if(currentHeader.getLayer() === 1) {
 						// We found a heading of layer 1
 						// Add it to the nav bar
-						var nav = $('<li><a class="header-menu">' + currentHeader.getText() + '</a></li>');
+						var nav = $('<li><a class="docfix-header-menu">' + currentHeader.getText() + '</a></li>');
 
 						nav.on('click', {file: docfix.contentArray[file], headerID: currentHeader.getHeaderID()}, function(e) {
 							e.data.file.search(e.data.headerID);
@@ -139,6 +139,67 @@ $(function () {
 		
 		// Show version information
 		$('#' + docfix.settings.versionInfo).html(docfix.version);
+		
+	};
+	
+	/*
+	 * Register the on-click event handler for the showCompleteDoc-Button
+	 */
+	$('#' + docfix.settings.completeDocButton).on('click', function(e) {
+		e.preventDefault();
+		docfix.showCompleteDocument();
+	});
+	
+	/**
+	 * Load and display all content files and create a TOC in front of the content.
+	 */
+	docfix.showCompleteDocument = function() {
+		
+		// Hide the navTags
+		$('#' + docfix.settings.navTags).hide();
+			
+		// Hide the summary div
+		$('#' + docfix.settings.summary).parent().hide();
+
+		// Hide the doc content
+		$('#' + docfix.settings.content).hide();
+		$('#' + docfix.settings.content).html('');
+		
+		// Hide TOC
+		$('#' + docfix.settings.toc).hide();
+		$('#' + docfix.settings.toc).html('');
+		
+		// Show the progress bar
+		$('#' + docfix.settings.progress).show();
+		$('#' + docfix.settings.progress).children('div').children('div').css('width', '2%');
+		
+		// Go over each file
+		for(var i = 0; i < docfix.contentArray.length; i++) {
+			
+			var summary = docfix.contentArray[i].generateSummary();
+			$('#' + docfix.settings.toc).append(summary);
+			
+			$('#' + docfix.settings.content).append(docfix.contentArray[i].plainContent);
+			
+			// Update the progress bar
+			$('#' + docfix.settings.progress).children('div').children('div').css('width', ((i+1) / docfix.contentArray.length * 100) +'%');
+		}
+		
+		// Do some necessary after-show actions
+		docfix.contentArray[docfix.contentArray.length - 1].prettyPrint = false;
+		docfix.contentArray[docfix.contentArray.length - 1].afterDisplay();
+		
+		// Push history
+		docfix.pushHistory(docfix.documentationTitle + ' - Complete', '?all');
+		
+		// Show the TOC
+		$('#' + docfix.settings.toc).show();
+		
+		// Show the doc content
+		$('#' + docfix.settings.content).show();
+		
+		// Hide the progress bar
+		$('#' + docfix.settings.progress).hide();
 		
 	};
 	
@@ -194,10 +255,10 @@ $(function () {
 	docfix.createLi = function(caption, text, level, headerID) {
 		
 		var $a = $('<a></a>');
-		$a.append('<span class="number">' + caption + ' ' + text + '</span>');
+		$a.append('<span class="docfix-number">' + caption + ' ' + text + '</span>');
 		$a.css('cursor', 'pointer');
 		
-		var $li = $('<li class="level-' + level + '"></li>');
+		var $li = $('<li class="docfix-level-' + level + '"></li>');
 		$li.append($a);
 		
 		$a.on('click', function() {
@@ -219,20 +280,32 @@ $(function () {
 	};
 	
 	/**
-	 * Generate the TOC (Table of contents)
+	 * Generate the chapter / file summary of each content file
+	 * Each content file will create its own summary. Aferwards a complete TOC can be generated.
+	 * 
 	 * @param start The caption that will be assigned to the first found level 1 header.
 	 */
-	docfix.generateTableOfContents = function(start) {
+	docfix.generateChapterSummaries = function(start) {
 		
 		var headerID = 0;
 		
+		// Show the progress bar
+		$('#' + docfix.settings.progress).children('div').children('div').css('width', '2%');
+		$('#' + docfix.settings.progress).show();
+		
 		for(var i = 0; i < docfix.fileArray.length; i++) {
 			docfix.contentArray[i] = new docfix.ContentFile(docfix.fileArray[i], start, headerID);
-			docfix.contentArray[i].generateTableOfContents();
+			docfix.contentArray[i].parse();
 			
 			start = docfix.contentArray[i].getHighestLevel();
 			headerID = docfix.contentArray[i].getHighestHeaderID();
+			
+			// Update the progress bar
+			$('#' + docfix.settings.progress).children('div').children('div').css('width', ((i+1) / docfix.contentArray.length * 100) +'%');
 		}
+		
+		// Hide the progress bar
+		$('#' + docfix.settings.progress).hide();
 		
 	};
 	
@@ -333,6 +406,7 @@ $(function () {
 		this.isLoaded = false;
 		this.prettyPrint = false;
 		this.content = null;
+		this.plainContent = null;
 		
 		this.firstLevel = firstLevel;
 		this.secondLevel = 0;
@@ -399,6 +473,7 @@ $(function () {
 			url: that.filename,
 			success: function(data) {
 				that.content = data;
+				that.plainContent = data;
 				that.isLoaded = true;
 			},
 			async: false,
@@ -411,6 +486,60 @@ $(function () {
 	};
 	
 	/**
+	 * Create the capter/file summary
+	 * 
+	 * @return Returns the jQuery object containing the created summary
+	 */
+	docfix.ContentFile.prototype.generateSummary = function() {
+		
+		var $summary = $('<ul class="docfix-summary"></ul>');
+		
+		for(var h = 0; h < this.headerList.length; h++) {
+			
+			var $header = docfix.createLi(this.headerList[h].getCaption(), this.headerList[h].getText(), this.headerList[h].getLayer(), this.headerList[h].getHeaderID());
+			$summary.append($header);
+		}
+		
+		return $summary;
+	};
+	
+	/**
+	 * Do some necessary actions after a content file was displayed
+	 */
+	docfix.ContentFile.prototype.afterDisplay = function() {
+		
+		// Call source code plugin
+		if(!this.prettyPrint) {
+			// Convert content of pre and code blocks back to text
+
+			var pre = $('pre');
+			var code = $('code');
+			
+			$.each(pre, function(){
+				$(this).text($(this).html());
+			});
+			
+			$.each(code, function(){
+				$(this).text($(this).html());
+			});
+			
+			prettyPrint();
+			this.prettyPrint = true;
+		}
+		
+		// Set onclick handler for cross references
+		$('.docfix-crossref').on('click', function(e) {
+			e.preventDefault();
+			docfix.search($(this).attr('href'));
+		});
+		
+		// Update scrollspy
+		$('[data-spy="scroll"]').each(function () {
+			$(this).scrollspy('refresh');
+		});
+	};
+	
+	/**
 	 * Draw the content. Display content and generate document / chapter summary.
 	 */
 	docfix.ContentFile.prototype.display = function() {
@@ -419,13 +548,7 @@ $(function () {
 		$('#' + docfix.settings.toc).hide();
 		
 		// Generate the summary
-		var $summary = $('<ul class="summary"></ul>');
-		
-		for(var h = 0; h < this.headerList.length; h++) {
-			
-			var $header = docfix.createLi(this.headerList[h].getCaption(), this.headerList[h].getText(), this.headerList[h].getLayer(), this.headerList[h].getHeaderID());
-			$summary.append($header);
-		}
+		var $summary = this.generateSummary();
 		
 		$('#' + docfix.settings.summary).html($summary);
 		$('#' + docfix.settings.summary).parent().show();
@@ -468,35 +591,8 @@ $(function () {
 		
 		$('#' + docfix.settings.navTags).show();
 		
-		// Call source code plugin
-		if(!this.prettyPrint) {
-			// Convert content of pre and code blocks back to text
-
-			var pre = $('pre');
-			var code = $('code');
-			
-			$.each(pre, function(){
-				$(this).text($(this).html());
-			});
-			
-			$.each(code, function(){
-				$(this).text($(this).html());
-			});
-			
-			prettyPrint();
-			this.prettyPrint = true;
-		}
-		
-		// Set onclick handler for cross references
-		$('.docfix-crossref').on('click', function(e) {
-			e.preventDefault();
-			docfix.search($(this).attr('href'));
-		});
-		
-		// Update scrollspy
-		$('[data-spy="scroll"]').each(function () {
-			$(this).scrollspy('refresh');
-		});
+		// Do some necessary post-display actions
+		this.afterDisplay();
 			
 	};
 	
@@ -540,9 +636,9 @@ $(function () {
 	};
 	
 	/**
-	 * Generate the document / chapter summary (Part of TOC) / navTags
+	 * Parse the document / create header information (Part of TOC) / navTags
 	 */
-	docfix.ContentFile.prototype.generateTableOfContents = function() {
+	docfix.ContentFile.prototype.parse = function() {
 		
 		var that = this;
 		
@@ -703,7 +799,11 @@ $(function () {
 			var split = uri.split('?');
 			
 			if(split.length > 1) {
-				docfix.restoreHistory(split[1]);
+				if(split[1] === 'all') {
+					docfix.showCompleteDocument();
+				} else {
+					docfix.restoreHistory(split[1]);
+				}
 			} else {
 				docfix.run();
 			}
@@ -717,8 +817,12 @@ $(function () {
 			
 			docfix.run();
 			
-			if(split.length > 1) {	
-				docfix.restoreHistory(split[1]);
+			if(split.length > 1) {
+				if(split[1] === 'all') {
+					docfix.showCompleteDocument();
+				} else {
+					docfix.restoreHistory(split[1]);
+				}
 			}
 			
 			applicationStart = false;
