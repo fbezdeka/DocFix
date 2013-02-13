@@ -47,7 +47,7 @@ $(function () {
 	docfix.initialized = false;
 	
 	/**
-	 * The docfix version
+	 * The partial docfix version information
 	 */
 	docfix.versionInfo = {
 		patch : 0,
@@ -55,6 +55,9 @@ $(function () {
 		major : 1
 	};
 	
+	/**
+	 * The docfix version string
+	 */
 	docfix.version = docfix.versionInfo.major + "." + docfix.versionInfo.minor + "." + docfix.versionInfo.patch;
 	
 	/**
