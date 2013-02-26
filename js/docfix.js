@@ -656,6 +656,11 @@ $(function () {
 				return;
 			}
 			
+			if($v.attr('data-docfix-parsing') === 'skip') {
+				// Skip recursive document scan if user defined skip
+				return;
+			}
+			
 			if($v.children().length > 0) {
 				// Continue recursion
 				$.each($v.children(), function(k, v) {

@@ -92,6 +92,25 @@
 	(DocFix will start searching for headers in the first specified content file and will 
 	continue in the same order they were added.)
 </p>
+<p>
+	By default DocFix searches for headers in all parts of your content files. The following 
+	example shows how some parts of your documents can be skipped by the parsing algorithm. 
+	Note the <span class="label">data-docfix-parsing</span> attribute.
+</p>
+<pre class="prettyprint linenums lang-html">
+<div class="alert alert-info" data-docfix-parsing="skip">
+	<h5>Important note!</h5>
+	<p>
+		The complete alert-div is skipped and therefore no including headers are indexed.
+	</p>
+</div>
+</pre>
+<div class="alert alert-info" data-docfix-parsing="skip">
+	<h5>Important note!</h5>
+	<p>
+		The complete alert-div is skipped and therefore no including headers are indexed.
+	</p>
+</div>
 
 <h4>Crossreferences and NavTags</h4>
 <p>
