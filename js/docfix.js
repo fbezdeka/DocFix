@@ -27,8 +27,8 @@
  */
 
 /**
- * Use a new empty object as doc namespace if it was not
- * defined yet, otherwise use the existing doc object.
+ * Use a new empty object as docfix namespace if it was not
+ * defined yet, otherwise use the existing docfix object.
  *
  * @namespace docfix namespace
  */
@@ -42,7 +42,7 @@ $(function () {
 	'use strict';
 	
 	/**
-	 * Indicates if the doc application has already been initialized;
+	 * Indicates if the docfix application has already been initialized;
 	 */
 	docfix.initialized = false;
 	
