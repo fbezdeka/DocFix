@@ -784,7 +784,12 @@ $(function () {
 		var History = window.History;
 		if ( !History.enabled ) {
 			// History.js is disabled for this browser.
-			// This is because we can optionally choose to support HTML4 browsers or not.
+			
+			// Create the documentation
+			docfix.run();
+			
+			// Show warning about missing history support
+			$('#' + docfix.settings.alert).removeClass('hidden').html(docfix.texts.warning.historySupportMissing);
 			return false;
 		}
 	

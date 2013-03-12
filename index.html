@@ -15,6 +15,7 @@
 		
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/docfix-texts.js"></script>
 		<script type="text/javascript" src="js/docfix.js"></script>
 		<script type="text/javascript" src="js/prettify.js"></script>
 		<script type="text/javascript" src="js/lang-css.js"></script>
@@ -32,6 +33,7 @@
 				basePath: '/',
 				completeDocButton: 'docfix-showall',
 				progress: 'docfix-progress',
+				alert: 'docfix-alert',
 				files: ['contentfileA.html', 'contentfileB.html', 'contentfileC.html', 'contentFileD.html']
 			};
 		</script>
@@ -56,6 +58,11 @@
 					<div class="docfix-mainbox">			
 						
 						<!-- Maybe this is a good place for adding a nice image/logo -->
+						
+						<div id="docfix-alert" class="alert alert-warning hidden">
+							<!-- Error messages will be displayed here -->
+						</div>
+						
 						<div class="navbar">
 							<div class="navbar-inner">
 								<ul class="nav">
@@ -81,7 +88,7 @@
 						
 						<div id="docfix-progress">
 						    <div class="progress progress-striped">
-    							<div class="bar" style="width: 2%;"></div>
+    							<div class="bar" style="width: 2%;"><!-- The progress bar --></div>
     						</div>
 						</div>
 		
@@ -91,15 +98,21 @@
 							<h2>Table of Contents</h2>					
 						</div>
 			
-						<div id="docfix-top"></div>
+						<div id="docfix-top">
+							<!-- This point will be used as reference point at the top -->
+						</div>
 			
 						<div>
 							Chapter Summary
-							<div id="docfix-summary"></div>
+							<div id="docfix-summary">
+								<!-- The chapter summary will be displayed here -->
+							</div>
 						</div>
 		
 		
-						<div id="docfix-content"></div>
+						<div id="docfix-content">
+							<!-- The documentation content will be displayed here -->
+						</div>
 					</div>
 		
 					<span class="docfix-copyright">&copy; Your Name, Year</span>

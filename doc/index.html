@@ -15,6 +15,7 @@
 		
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/docfix-texts.js"></script>
 		<script type="text/javascript" src="../js/docfix.js"></script>
 		<script type="text/javascript" src="../js/prettify.js"></script>
 		<script type="text/javascript" src="../js/lang-css.js"></script>
@@ -32,6 +33,7 @@
 				basePath: '/doc/',
 				completeDocButton: 'docfix-showall',
 				progress: 'docfix-progress',
+				alert: 'docfix-alert',
 				files: ['gettingstarted.html', 'crossrefs.html', 'sourcecode.html', 'decorations.html']
 			};
 		</script>
@@ -60,6 +62,10 @@
 						<div style="text-align: center;">
 							<img src="img/docfix.png" alt="DocFix documentation image" class="docfix-logo"/>
 						</div>
+						
+						<div id="docfix-alert" class="alert alert-warning hidden">
+							<!-- Error messages will be displayed here -->
+						</div>
 				
 						<div class="navbar">
 							<div class="navbar-inner">
@@ -86,28 +92,34 @@
 						
 						<div id="docfix-progress">
 						    <div class="progress progress-striped">
-    							<div class="bar" style="width: 2%;"></div>
+    							<div class="bar" style="width: 2%;"><!-- The progress bar --></div>
     						</div>
 						</div>
 
 						<div id="docfix-toc">
 							<h1>DocFix - Documentation</h1>
 							<p style="text-align: center;">
-								(version <span id="docfix-version"></span>)
+								(version <span id="docfix-version"><!-- Docfix version will be added here --></span>)
 							</p>
 			
 							<h2>Table of Contents</h2>					
 						</div>
 
-						<div id="docfix-top"></div>
+						<div id="docfix-top">
+							<!-- This point will be used as reference point at the top -->
+						</div>
 	
 						<div>
 							Chapter Summary
-							<div id="docfix-summary"></div>
+							<div id="docfix-summary">
+								<!-- The chapter summary will be displayed here -->
+							</div>
 						</div>
 
 
-						<div id="docfix-content"></div>
+						<div id="docfix-content">
+							<!-- The documentation content will be displayed here -->
+						</div>
 					</div>
 
 					<span class="docfix-copyright">&copy; Florian Bezdeka, 2012</span>
