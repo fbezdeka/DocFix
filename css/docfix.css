@@ -217,6 +217,10 @@ ul.docfix-navtags {
 	background-color: rgb(255, 255, 255);
 	border-radius: 6px 6px 6px 6px;
 	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+	
+	max-height: 70%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 

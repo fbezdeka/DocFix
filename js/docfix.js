@@ -587,7 +587,9 @@ $(function () {
 			$('#' + docfix.settings.navTags).append($li);
 		}
 		
-		$('#' + docfix.settings.navTags).show();
+		if(this.navTags.length > 0) {
+			$('#' + docfix.settings.navTags).show();
+		}
 		
 		// Do some necessary post-display actions
 		this.afterDisplay();
