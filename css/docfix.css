@@ -80,7 +80,7 @@ ul.docfix-navtags .icon-chevron-right {
 }
 
 ul.docfix-navtags > li > a {
-    margin: 0px 0px -1px;
+    margin: -1px 0px 0px 0px;
     padding: 8px 14px;
     border: 1px solid rgb(229, 229, 229);
     display: block;
